@@ -10,6 +10,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "chat.html"));
+});
+
 const faqPath = path.join(__dirname, "faq.json");
 const faqs = JSON.parse(fs.readFileSync(faqPath, "utf-8"));
 
@@ -21,7 +25,7 @@ function scoreFaq(query, faq) {
   const q = normalize(query);
   const question = normalize(faq.question);
   const answer = normalize(faq.answer);
-  const keywords = (faq.keywords || []).map(k => normalize(k));
+  const keywords = (faq.keywords || []).map((k) => normalize(k));
 
   let score = 0;
 
@@ -32,11 +36,13 @@ function scoreFaq(query, faq) {
     if (!kw) continue;
     if (q.includes(kw) || kw.includes(q)) score += 25;
     const qTokens = q.split(/\s+/).filter(Boolean);
-    if (qTokens.some(t => kw.includes(t))) score += 8;
+    if (qTokens.some((t) => kw.includes(t))) score += 8;
   }
 
   const qTokens = q.split(/\s+/).filter(Boolean);
-  const hitCount = qTokens.filter(t => question.includes(t) || answer.includes(t)).length;
+  const hitCount = qTokens.filter(
+    (t) => question.includes(t) || answer.includes(t)
+  ).length;
   score += hitCount * 5;
 
   return score;
@@ -49,21 +55,22 @@ app.post("/api/ask", (req, res) => {
   }
 
   const ranked = faqs
-    .map(faq => ({ ...faq, _score: scoreFaq(question, faq) }))
+    .map((faq) => ({ ...faq, _score: scoreFaq(question, faq) }))
     .sort((a, b) => b._score - a._score);
 
   const best = ranked[0];
-  const related = ranked.slice(1, 4).map(item => ({
+  const related = ranked.slice(1, 4).map((item) => ({
     id: item.id,
     question: item.question,
-    category: item.category
+    category: item.category,
   }));
 
   if (!best || best._score < 15) {
     return res.json({
       found: false,
-      answer: "暂未找到精准答案，请换个关键词（如：EAP、MMSE、SAE、副作用）或联系人工支持。",
-      related: []
+      answer:
+        "暂未找到精准答案，请换个关键词（如：EAP、MMSE、SAE、副作用）或联系人工支持。",
+      related: [],
     });
   }
 
@@ -72,7 +79,7 @@ app.post("/api/ask", (req, res) => {
     answer: best.answer,
     matchedQuestion: best.question,
     category: best.category,
-    related
+    related,
   });
 });
 
