@@ -94,6 +94,13 @@
       s.async = 1;
       d.getElementsByTagName("head")[0].appendChild(s);
     })();
+
+    // 自动欢迎语逻辑
+    window.$crisp.push(["on", "session:loaded", function(){
+      setTimeout(function() {
+        window.$crisp.push(["do", "message:show", ["text", "您好！我是 TB006 人工助手。如果机器人无法回答您的问题，请在这里留言，并留下您的邮箱，我们会尽快回复您。"]]);
+      }, 2000);
+    }]);
   </script>
 </body>
 </html>
