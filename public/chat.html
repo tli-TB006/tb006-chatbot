@@ -102,7 +102,7 @@
     // 2. 自动欢迎语逻辑
     window.$crisp.push(["on", "session:loaded", function(){
       setTimeout(function() {
-        window.$crisp.push(["do", "message:show", ["text", "您好！我是 TB006 人工助手。如果机器人无法回答您的问题，请在这里留言，并留下您的邮箱，我们会尽快回复您。"]]);
+        window.$crisp.push(["do", "message:show", ["text", "您好！我是 TB006 先行用药项目的人工助手。目前的咨询量较大，推荐您先尝试咨询 AI 助手，它能更快速地为您解答基本问题。 如仍需人工帮助，请在这里留言并附上您的邮箱，工作人员会尽快回访。谢谢您的理解。"]]);
       }, 2000);
     }]);
   </script>
