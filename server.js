@@ -92,7 +92,7 @@ app.post("/api/ask", async (req, res) => {
 
     return res.json({
       found: false,
-      answer: "抱歉，我还没学到这个问题的具体答案。您可以尝试输入更简短的关键词，或咨询人工微信：CA_Pluto。",
+      answer: "抱歉，我还没学到这个问题的具体答案。您可以尝试输入更简短的关键词.",
       related: [],
     });
   }
@@ -115,13 +115,4 @@ app.post("/api/ask", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`TB006 FAQ服务已启动, 端口：${PORT}`);
 });
-2. 你还需要做的两件事（非常重要）：
-A. 在 GitHub 的 package.json 中添加依赖
-你的 package.json 里的 dependencies 部分必须看起来像这样：
 
-JSON
-"dependencies": {
-  "express": "^4.18.2",
-  "cors": "^2.8.5",
-  "nodemailer": "^6.9.0" 
-}
