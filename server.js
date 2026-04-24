@@ -97,7 +97,7 @@ app.post("/api/ask", (req, res) => {
   if (!best || best._score < 15) {
     return res.json({
       found: false,
-      answer: "抱歉，我还没学到这个问题的具体答案。您可以尝试输入更简短的关键词（如：'价格'、'入组'、'副作用'），或咨询人工微信：CA_Pluto。",
+      answer: "抱歉，我还没学到这个问题的具体答案。您可以尝试输入更简短的关键词（如：'价格'、'入组'、'副作用'）",
       related: [],
     });
   }
