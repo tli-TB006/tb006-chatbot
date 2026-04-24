@@ -87,6 +87,10 @@
   <script type="text/javascript">
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = "8480a6e2-58f9-4c1f-a5ad-c5cdfcaffa0f";
+
+    // 1. 强制设定语言为简体中文 (必须放在脚本加载前)
+    window.$crisp.push(["set", "session:locale", ["zh-cn"]]);
+
     (function() {
       var d = document;
       var s = d.createElement("script");
@@ -95,7 +99,7 @@
       d.getElementsByTagName("head")[0].appendChild(s);
     })();
 
-    // 自动欢迎语逻辑
+    // 2. 自动欢迎语逻辑
     window.$crisp.push(["on", "session:loaded", function(){
       setTimeout(function() {
         window.$crisp.push(["do", "message:show", ["text", "您好！我是 TB006 人工助手。如果机器人无法回答您的问题，请在这里留言，并留下您的邮箱，我们会尽快回复您。"]]);
