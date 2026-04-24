@@ -69,7 +69,7 @@ app.post("/api/ask", (req, res) => {
     return res.json({
       found: false,
       answer:
-        "暂未找到精准答案，请换个关键词（如：EAP、MMSE、SAE、副作用）或联系人工支持。",
+        "暂未找到精准答案，请换个关键词（如：疗效、入组流程、疗程、副作用）或联系人工支持。",
       related: [],
     });
   }
