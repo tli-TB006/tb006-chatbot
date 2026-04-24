@@ -1,7 +1,7 @@
 {
   "name": "tb006-chatbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "TB006 FAQ Chatbot with Email Notifications",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^4.19.2"
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13"
   }
 }
