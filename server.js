@@ -95,9 +95,12 @@ app.post("/api/ask", (req, res) => {
 
   // 核心优化 3: 调整阈值。如果分值太低（低于 15），认为没找到
   if (!best || best._score < 15) {
+    // 关键：在控制台打印未匹配的日志
+    console.log(`[MISSING_FAQ] 用户提问: "${question}" | 时间: ${new Date().toLocaleString()}`);
+
     return res.json({
       found: false,
-      answer: "抱歉，我还没学到这个问题的具体答案。您可以尝试输入更简短的关键词（如：'价格'、'入组'、'副作用'）",
+      answer: "暂未找到精准答案，请咨询人工微信：CA_Pluto。",
       related: [],
     });
   }
